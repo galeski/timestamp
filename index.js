@@ -44,6 +44,15 @@ app.get("/api", (req, res) => {
   res.json({ unix: date.valueOf(), utc: date.toUTCString() });
 });
 
+app.get('/api/whoami', function(req, res) {
+  res.json({
+    ipaddress: req.headers['x-forwarded-for'],
+    language: req.headers['accept-language'],
+    software: req.headers['user-agent']
+  },
+  );
+});
+
 // Helper function
 function parseDateToFormat(dateString) {
   // Parse the input date string
